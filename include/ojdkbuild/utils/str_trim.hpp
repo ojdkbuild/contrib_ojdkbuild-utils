@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-#ifndef OJDKBUILD_UTILS_HPP
-#define OJDKBUILD_UTILS_HPP
+#ifndef OJDKBUILD_UTILS_STR_TRIM_HPP
+#define OJDKBUILD_UTILS_STR_TRIM_HPP
 
-#include "ojdkbuild/utils/str_replace.hpp"
-#include "ojdkbuild/utils/str_trim.hpp"
-#include "ojdkbuild/utils/to_string.hpp"
+#include <string>
 
-namespace ojb = ojdkbuild::utils;
+namespace ojdkbuild {
+namespace utils {
 
-#endif // OJDKBUILD_UTILS_HPP
+std::string str_trim(const std::string& str);
+
+} // namespace
+}
+
+#endif // OJDKBUILD_UTILS_STR_TRIM_HPP

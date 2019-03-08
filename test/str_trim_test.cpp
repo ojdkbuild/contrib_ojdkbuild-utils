@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
-#ifndef OJDKBUILD_UTILS_HPP
-#define OJDKBUILD_UTILS_HPP
-
-#include "ojdkbuild/utils/str_replace.hpp"
 #include "ojdkbuild/utils/str_trim.hpp"
-#include "ojdkbuild/utils/to_string.hpp"
 
-namespace ojb = ojdkbuild::utils;
+#include <iostream>
+#include "ojdkbuild/utils/assert.hpp"
 
-#endif // OJDKBUILD_UTILS_HPP
+void test_trim() {
+    ojbassert("foo bar" == ojb::str_trim("foo bar"));
+    ojbassert("foo bar" == ojb::str_trim(" foo bar"));
+    ojbassert("foo bar" == ojb::str_trim("foo bar   "));
+    ojbassert("foo bar" == ojb::str_trim("\tfoo bar \t  "));
+}
+
+int main() {
+    try {
+        test_trim();
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+    return 0;
+}
