@@ -17,6 +17,10 @@
 #ifndef OJDKBUILD_UTILS_HPP
 #define OJDKBUILD_UTILS_HPP
 
+#include "ojdkbuild/utils/addressof.hpp"
+#include "ojdkbuild/utils/defer.hpp"
+#include "ojdkbuild/utils/exception.hpp"
+#include "ojdkbuild/utils/noexcept.hpp"
 #include "ojdkbuild/utils/str_replace.hpp"
 #include "ojdkbuild/utils/str_trim.hpp"
 #include "ojdkbuild/utils/to_string.hpp"

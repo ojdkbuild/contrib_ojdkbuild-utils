@@ -23,8 +23,8 @@ namespace ojdkbuild {
 namespace utils {
 
 std::string str_trim(const std::string& str) {
-    auto front = std::find_if_not(str.begin(), str.end(), std::isspace);
-    auto back = std::find_if_not(str.rbegin(), std::string::const_reverse_iterator(front), std::isspace);
+    auto front = std::find_if_not(str.begin(), str.end(), ::isspace);
+    auto back = std::find_if_not(str.rbegin(), std::string::const_reverse_iterator(front), ::isspace);
     return std::string(front, back.base());
 }
 
