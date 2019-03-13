@@ -14,24 +14,18 @@
  * limitations under the License.
  */
 
-#ifndef OJDKBUILD_UTILS_HPP
-#define OJDKBUILD_UTILS_HPP
+#ifndef OJDKBUILD_UTILS_ERRCODE_TO_STRING_HPP
+#define OJDKBUILD_UTILS_ERRCODE_TO_STRING_HPP
 
-#include "ojdkbuild/utils/addressof.hpp"
-#include "ojdkbuild/utils/defer.hpp"
-#include "ojdkbuild/utils/exception.hpp"
-#include "ojdkbuild/utils/lambda.hpp"
+#include <string>
 #include "ojdkbuild/utils/noexcept.hpp"
-#include "ojdkbuild/utils/str_replace.hpp"
-#include "ojdkbuild/utils/str_trim.hpp"
-#include "ojdkbuild/utils/to_string.hpp"
 
-#ifdef _WIN32
-#include "ojdkbuild/utils/errcode_to_string.hpp"
-#include "ojdkbuild/utils/narrow.hpp"
-#include "ojdkbuild/utils/widen.hpp"
-#endif // _WIN32
+namespace ojdkbuild {
+namespace utils {
 
-namespace ojb = ojdkbuild::utils;
+std::string errcode_to_string(unsigned long code) OJDKBUILD_NOEXCEPT;
 
-#endif // OJDKBUILD_UTILS_HPP
+} // namespace
+}
+
+#endif // OJDKBUILD_UTILS_ERRCODE_TO_STRING_HPP

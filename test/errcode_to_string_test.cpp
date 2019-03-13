@@ -14,24 +14,24 @@
  * limitations under the License.
  */
 
-#ifndef OJDKBUILD_UTILS_HPP
-#define OJDKBUILD_UTILS_HPP
-
-#include "ojdkbuild/utils/addressof.hpp"
-#include "ojdkbuild/utils/defer.hpp"
-#include "ojdkbuild/utils/exception.hpp"
-#include "ojdkbuild/utils/lambda.hpp"
-#include "ojdkbuild/utils/noexcept.hpp"
-#include "ojdkbuild/utils/str_replace.hpp"
-#include "ojdkbuild/utils/str_trim.hpp"
-#include "ojdkbuild/utils/to_string.hpp"
-
-#ifdef _WIN32
 #include "ojdkbuild/utils/errcode_to_string.hpp"
-#include "ojdkbuild/utils/narrow.hpp"
-#include "ojdkbuild/utils/widen.hpp"
-#endif // _WIN32
 
-namespace ojb = ojdkbuild::utils;
+#include <iostream>
+#include "ojdkbuild/utils/assert.hpp"
 
-#endif // OJDKBUILD_UTILS_HPP
+void test_code() {
+    std::string st = ojb::errcode_to_string(1);
+    ojbassert(st.length() > 0);
+    std::string invalid = ojb::errcode_to_string(-1);
+    ojbassert(st.length() > 0);
+}
+
+int main() {
+    try {
+        test_code();
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+    return 0;
+}

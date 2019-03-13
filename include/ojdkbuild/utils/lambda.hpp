@@ -17,10 +17,10 @@
 #ifndef OJDKBUILD_UTILS_LAMBDA_HPP
 #define OJDKBUILD_UTILS_LAMBDA_HPP
 
+#include "ojdkbuild/utils/noexcept.hpp"
+
 namespace ojdkbuild {
 namespace utils {
-
-#include "ojdkbuild/utils/noexcept.hpp"
 
 template<typename Func, typename Arg>
 class lambda {

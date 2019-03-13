@@ -14,24 +14,27 @@
  * limitations under the License.
  */
 
-#ifndef OJDKBUILD_UTILS_HPP
-#define OJDKBUILD_UTILS_HPP
-
-#include "ojdkbuild/utils/addressof.hpp"
-#include "ojdkbuild/utils/defer.hpp"
-#include "ojdkbuild/utils/exception.hpp"
-#include "ojdkbuild/utils/lambda.hpp"
-#include "ojdkbuild/utils/noexcept.hpp"
-#include "ojdkbuild/utils/str_replace.hpp"
-#include "ojdkbuild/utils/str_trim.hpp"
-#include "ojdkbuild/utils/to_string.hpp"
-
-#ifdef _WIN32
-#include "ojdkbuild/utils/errcode_to_string.hpp"
 #include "ojdkbuild/utils/narrow.hpp"
+
+#include <iostream>
+#include "ojdkbuild/utils/assert.hpp"
 #include "ojdkbuild/utils/widen.hpp"
-#endif // _WIN32
 
-namespace ojb = ojdkbuild::utils;
+void test_narrow() {
+    // hello in russian in utf-16
+    std::wstring ws = L"\U0000043f\U00000440\U00000438\U00000432\U00000435\U00000442";
+    std::string st = ojb::narrow(ws);
+    ojbassert(12 == st.length());
+    std::wstring converted = ojb::widen(st);
+    ojbassert(ws == converted);
+}
 
-#endif // OJDKBUILD_UTILS_HPP
+int main() {
+    try {
+        test_narrow();
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+    return 0;
+}
