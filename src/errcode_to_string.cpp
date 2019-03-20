@@ -18,7 +18,8 @@
 
 #include "ojdkbuild/utils/errcode_to_string.hpp"
 
-#include <windows.h>
+#include "ojdkbuild/utils/windows.hpp"
+
 #include "ojdkbuild/utils/defer.hpp"
 #include "ojdkbuild/utils/lambda.hpp"
 #include "ojdkbuild/utils/narrow.hpp"

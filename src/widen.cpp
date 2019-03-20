@@ -18,7 +18,8 @@
 
 #include "ojdkbuild/utils/widen.hpp"
 
-#include <windows.h>
+#include "ojdkbuild/utils/windows.hpp"
+
 #include "ojdkbuild/utils/addressof.hpp"
 #include "ojdkbuild/utils/errcode_to_string.hpp"
 #include "ojdkbuild/utils/exception.hpp"

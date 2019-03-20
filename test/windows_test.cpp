@@ -16,24 +16,18 @@
 
 #ifdef _WIN32
 
-#include "ojdkbuild/utils/narrow.hpp"
+#include "ojdkbuild/utils/windows.hpp"
 
 #include <iostream>
 #include "ojdkbuild/utils/assert.hpp"
-#include "ojdkbuild/utils/widen.hpp"
 
-void test_narrow() {
-    // hello in russian in utf-16
-    std::wstring ws = L"\U0000043f\U00000440\U00000438\U00000432\U00000435\U00000442";
-    std::string st = ojb::narrow(ws);
-    ojbassert(12 == st.length());
-    std::wstring converted = ojb::widen(st);
-    ojbassert(ws == converted);
+void test_pid() {
+    ojbassert(::GetCurrentProcessId() > 0);
 }
 
 int main() {
     try {
-        test_narrow();
+        test_pid();
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
         return 1;

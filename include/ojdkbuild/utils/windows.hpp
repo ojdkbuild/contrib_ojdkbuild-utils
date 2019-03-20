@@ -14,32 +14,25 @@
  * limitations under the License.
  */
 
-#ifdef _WIN32
+#ifndef OJDKBUILD_UTILS_WINDOWS_HPP
+#define OJDKBUILD_UTILS_WINDOWS_HPP
 
-#include "ojdkbuild/utils/errcode_to_string.hpp"
+#ifndef UNICODE
+#define UNICODE
+#endif // UNICODE
 
-#include <iostream>
-#include "ojdkbuild/utils/assert.hpp"
+#ifndef _UNICODE
+#define _UNICODE
+#endif // _UNICODE
 
-void test_code() {
-    std::string st = ojb::errcode_to_string(1);
-    ojbassert(st.length() > 0);
-    std::string invalid = ojb::errcode_to_string(-1);
-    ojbassert(st.length() > 0);
-}
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif // NOMINMAX
 
-int main() {
-    try {
-        test_code();
-    } catch (const std::exception& e) {
-        std::cout << e.what() << std::endl;
-        return 1;
-    }
-    return 0;
-}
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif // WIN32_LEAN_AND_MEAN
 
-#else // !_WIN32
-int main() {
-    return 0;
-}
-#endif // _WIN32
+#include <windows.h>
+
+#endif // OJDKBUILD_UTILS_WINDOWS_HPP

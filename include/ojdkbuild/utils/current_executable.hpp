@@ -14,32 +14,19 @@
  * limitations under the License.
  */
 
-#ifdef _WIN32
+#ifndef OJDKBUILD_UTILS_CURRENT_EXECUTABLE_HPP
+#define OJDKBUILD_UTILS_CURRENT_EXECUTABLE_HPP
 
-#include "ojdkbuild/utils/errcode_to_string.hpp"
+#include <string>
 
-#include <iostream>
-#include "ojdkbuild/utils/assert.hpp"
+namespace ojdkbuild {
+namespace utils {
 
-void test_code() {
-    std::string st = ojb::errcode_to_string(1);
-    ojbassert(st.length() > 0);
-    std::string invalid = ojb::errcode_to_string(-1);
-    ojbassert(st.length() > 0);
+std::string current_executable_path();
+
+std::string current_executable_dir();
+
+} // namespace
 }
 
-int main() {
-    try {
-        test_code();
-    } catch (const std::exception& e) {
-        std::cout << e.what() << std::endl;
-        return 1;
-    }
-    return 0;
-}
-
-#else // !_WIN32
-int main() {
-    return 0;
-}
-#endif // _WIN32
+#endif // OJDKBUILD_UTILS_CURRENT_EXECUTABLE_HPP

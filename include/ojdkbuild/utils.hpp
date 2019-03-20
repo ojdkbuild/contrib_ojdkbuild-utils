@@ -29,6 +29,7 @@
 #ifdef _WIN32
 #include "ojdkbuild/utils/errcode_to_string.hpp"
 #include "ojdkbuild/utils/narrow.hpp"
+#include "ojdkbuild/utils/current_executable.hpp"
 #include "ojdkbuild/utils/widen.hpp"
 #endif // _WIN32
 

@@ -19,7 +19,9 @@
 #include "ojdkbuild/utils/narrow.hpp"
 
 #include <vector>
-#include <windows.h>
+
+#include "ojdkbuild/utils/windows.hpp"
+
 #include "ojdkbuild/utils/exception.hpp"
 #include "ojdkbuild/utils/to_string.hpp"
 

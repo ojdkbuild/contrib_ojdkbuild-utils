@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#ifdef _WIN32
+
 #include "ojdkbuild/utils/widen.hpp"
 
 #include <iostream>
@@ -38,3 +40,9 @@ int main() {
     }
     return 0;
 }
+
+#else // !_WIN32
+int main() {
+    return 0;
+}
+#endif // _WIN32
