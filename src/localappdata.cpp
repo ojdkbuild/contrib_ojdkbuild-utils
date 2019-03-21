@@ -14,26 +14,43 @@
  * limitations under the License.
  */
 
-#ifndef OJDKBUILD_UTILS_HPP
-#define OJDKBUILD_UTILS_HPP
+#ifdef _WIN32
+
+#include "ojdkbuild/utils/localappdata.hpp"
+
+#include <algorithm>
+#include <vector>
+
+#include "ojdkbuild/utils/windows.hpp"
+#include <shlobj.h>
 
 #include "ojdkbuild/utils/addressof.hpp"
 #include "ojdkbuild/utils/defer.hpp"
 #include "ojdkbuild/utils/exception.hpp"
 #include "ojdkbuild/utils/lambda.hpp"
-#include "ojdkbuild/utils/noexcept.hpp"
-#include "ojdkbuild/utils/str_replace.hpp"
-#include "ojdkbuild/utils/str_trim.hpp"
-#include "ojdkbuild/utils/to_string.hpp"
-
-#ifdef _WIN32
-#include "ojdkbuild/utils/errcode_to_string.hpp"
-#include "ojdkbuild/utils/current_executable.hpp"
-#include "ojdkbuild/utils/localappdata.hpp"
 #include "ojdkbuild/utils/narrow.hpp"
-#include "ojdkbuild/utils/widen.hpp"
+
+namespace ojdkbuild {
+namespace utils {
+
+std::string localappdata_dir() {
+    wchar_t* wbuf = nullptr;
+    auto err = ::SHGetKnownFolderPath(
+            FOLDERID_LocalAppData,
+            KF_FLAG_CREATE,
+            nullptr,
+            addressof(wbuf));
+    if (S_OK != err || nullptr == wbuf) {
+        throw exception("Error getting 'LocalAppData' dir");
+    }
+    auto deferred = defer(make_lambda(::CoTaskMemFree, wbuf));
+    auto path = narrow(wbuf, ::wcslen(wbuf));
+    std::replace(path.begin(), path.end(), '\\', '/');
+    path.push_back('/');
+    return path;
+}
+
+} // namespace
+}
+
 #endif // _WIN32
-
-namespace ojb = ojdkbuild::utils;
-
-#endif // OJDKBUILD_UTILS_HPP

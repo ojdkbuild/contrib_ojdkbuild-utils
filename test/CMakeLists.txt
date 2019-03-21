@@ -19,7 +19,7 @@ include ( ${CMAKE_CURRENT_LIST_DIR}/../../../resources/cmake/ojdkbuild_common.cm
 project ( ojdkbuild_utils_test C CXX )
 
 # dependencies
-add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../../ojdkbuild-utils ojdkbuild_utils )
+ojdkbuild_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../../ojdkbuild-utils ojdkbuild_utils )
 
 set ( ${PROJECT_NAME}_DEPS ojdkbuild_utils )
 ojdkbuild_pkg_check_modules ( ${PROJECT_NAME}_DEPS_PC REQUIRED ${PROJECT_NAME}_DEPS )
