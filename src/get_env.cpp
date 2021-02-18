@@ -26,9 +26,6 @@
 #include "ojdkbuild/utils/narrow.hpp"
 #include "ojdkbuild/utils/widen.hpp"
 
-// todo: removeme
-#include <iostream>
-
 namespace ojdkbuild {
 namespace utils {
 
